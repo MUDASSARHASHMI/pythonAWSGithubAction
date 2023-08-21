@@ -15,7 +15,7 @@ jobs:
           python-version: 3.11
       - name: Install dependencies
         run: |
-            cd functions
+            cd action
             pip install flake8
       - name: Lint With Flake8
         run: |
@@ -33,12 +33,12 @@ jobs:
           python-version: 3.11
       - name: Install dependencies
         run: |
-          cd functions
+          cd action
           python -m pip install --upgrade pip
           if [-f requirements.txt]; then pip install -r requirements.txt -t .; fi
       - name : Zip the function
         run: |
-          cd functions
+          cd action
           zip -r ../${{ github.sha }}.zip .
       - name: Archive the artifact
         uses: actions/upload-artifact@v2
