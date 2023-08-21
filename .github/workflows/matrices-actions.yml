@@ -2,7 +2,7 @@ name: deploy my Lambda function
 on:
   push:
     branches:
-      - main
+      - feature*
 jobs:
   lint:
     runs-on: ubuntu-latest
