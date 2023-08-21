@@ -76,7 +76,7 @@ jobs:
           aws-region: us-east-1
       - name: Create test function
         run: |
-          aws lambda create-function --function-name test-function-${{ matrix.input }} --code S3Bucket=mysuperbucketfortestingpurpose1,S3Key=${{ github.sha }}.zip --handler lambda_function.lambda_handler --runtime python3.11 --role arn:aws:iam::151456088802:role/my-lambda-role
+          aws lambda create-function --function-name test-function-${{ matrix.input }} --code S3Bucket=mysuperbucketfortestingpurpose1,S3Key=${{ github.sha }}.zip --handler lambda_function.lambda_handler --runtime python3.11 --role arn:aws:iam::509802029116:role/my-lambda-role
       - name: Invoke test functions seperately
         run: |
           aws lambda invoke --function-name test-function-${{ matrix.input }} --payload $(echo "{\"input\": \"${{ matrix.input }}\"}" | base64) --output json out
