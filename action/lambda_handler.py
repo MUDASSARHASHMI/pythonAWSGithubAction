@@ -6,6 +6,8 @@ def lambda_handler(event, context):
         context: lambda methods and properties
     Returns:
         string: greeting response
+    Functions:
+        Added two test functions test-function and Matrix
     """
     print("Starting functions\n.....................................")
     if event["input"] == "Hello":
