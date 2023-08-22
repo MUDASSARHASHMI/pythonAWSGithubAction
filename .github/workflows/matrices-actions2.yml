@@ -112,4 +112,4 @@ jobs:
           aws-region: us-east-1
       - name: Update function code
         run: |
-            aws lambda update-function-code --function-name test-function-${{ matrix.input }} --s3-bucket mysuperbucketfortestingpurpose1 --s3-key ${{ github.repository }}/${{ github.sha }}.zip --publish
+            aws lambda update-function-code --function-name my-function --s3-bucket mysuperbucketfortestingpurpose1 --s3-key ${{ github.repository }}/${{ github.sha }}.zip --publish
