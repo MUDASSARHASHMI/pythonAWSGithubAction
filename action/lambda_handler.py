@@ -15,3 +15,4 @@ def lambda_handler(event, context):
     else:
         raise
 
+## Updated Lambda function with name of "lambda_handler"
