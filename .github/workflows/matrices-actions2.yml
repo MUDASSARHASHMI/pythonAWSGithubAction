@@ -92,7 +92,9 @@ jobs:
       - name: Invoke test function
         run: |
           aws lambda invoke --function-name test-function-${{ matrix.input }} out --log-type Tail --query 'LogResult' --output text |  base64 -d  
-
+          if grep -q "Error" out; then
+            exit1
+          fi
       - name: Destroy test function
         if: ${{ always() }}
         run: |
@@ -110,8 +112,4 @@ jobs:
           aws-region: us-east-1
       - name: Update function code
         run: |
-            aws lambda update-function-code \
-              --function-name test-function-${{ matrix.input }} \
-              --s3-bucket s3://mysuperbucketfortestingpurpose1 \
-              --s3-key ${{ github.repository }}/${{ github.sha }}.zip \
-              --publish
+            aws lambda update-function-code --function-name test-function-${{ matrix.input }} --s3-bucket s3://mysuperbucketfortestingpurpose1 --s3-key ${{ github.repository }}/${{ github.sha }}.zip --publish
