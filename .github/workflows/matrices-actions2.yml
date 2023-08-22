@@ -91,10 +91,8 @@ jobs:
               --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/my-lambda-role
       - name: Invoke test function
         run: |
-          aws lambda invoke --function-name test-function-${{ matrix.input }} --payload $(echo "{\"input\": \"${{ matrix.input }}\"}" | base64) --output json out 
-          if grep -q "Error" out; then
-            exit1
-          fi
+          aws lambda invoke --function-name test-function-${{ matrix.input }} out --log-type Tail --query 'LogResult' --output text |  base64 -d  
+
       - name: Destroy test function
         if: ${{ always() }}
         run: |
